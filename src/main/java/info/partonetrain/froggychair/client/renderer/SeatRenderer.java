@@ -10,19 +10,17 @@ import net.minecraft.util.ResourceLocation;
 /**
  * Author: MrCrayfish
  */
-public class SeatRenderer extends EntityRenderer<SeatEntity>
-{
-    public SeatRenderer(EntityRendererManager manager)
-    {
+public class SeatRenderer extends EntityRenderer<SeatEntity> {
+    public SeatRenderer(EntityRendererManager manager) {
         super(manager);
     }
 
     @Override
-    public ResourceLocation getEntityTexture(SeatEntity seatEntity)
-    {
+    public ResourceLocation getEntityTexture(SeatEntity seatEntity) {
         return null;
     }
 
     //@Override
-    protected void func_225629_a_(SeatEntity p_225629_1_, String p_225629_2_, MatrixStack p_225629_3_, IRenderTypeBuffer p_225629_4_, int p_225629_5_) {}
+    protected void func_225629_a_(SeatEntity p_225629_1_, String p_225629_2_, MatrixStack p_225629_3_, IRenderTypeBuffer p_225629_4_, int p_225629_5_) {
+    }
 }

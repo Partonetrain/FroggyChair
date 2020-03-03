@@ -9,18 +9,15 @@ import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class VoxelHelper {
-    public static VoxelShape combineAll(Collection<VoxelShape> shapes)
-    {
+    public static VoxelShape combineAll(Collection<VoxelShape> shapes) {
         VoxelShape result = VoxelShapes.empty();
-        for(VoxelShape shape : shapes)
-        {
+        for (VoxelShape shape : shapes) {
             result = VoxelShapes.combine(result, shape, IBooleanFunction.OR);
         }
         return result.simplify();
     }
 
-    public static VoxelShape setMaxHeight(VoxelShape source, double height)
-    {
+    public static VoxelShape setMaxHeight(VoxelShape source, double height) {
         AtomicReference<VoxelShape> result = new AtomicReference<>(VoxelShapes.empty());
         source.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
         {
@@ -30,8 +27,7 @@ public class VoxelHelper {
         return result.get().simplify();
     }
 
-    public static VoxelShape limitHorizontal(VoxelShape source)
-    {
+    public static VoxelShape limitHorizontal(VoxelShape source) {
         AtomicReference<VoxelShape> result = new AtomicReference<>(VoxelShapes.empty());
         source.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
         {
@@ -41,25 +37,21 @@ public class VoxelHelper {
         return result.get().simplify();
     }
 
-    public static VoxelShape[] getRotatedShapes(VoxelShape source)
-    {
+    public static VoxelShape[] getRotatedShapes(VoxelShape source) {
         VoxelShape shapeNorth = rotate(source, Direction.NORTH);
         VoxelShape shapeEast = rotate(source, Direction.EAST);
         VoxelShape shapeSouth = rotate(source, Direction.SOUTH);
         VoxelShape shapeWest = rotate(source, Direction.WEST);
-        return new VoxelShape[] { shapeSouth, shapeWest, shapeNorth, shapeEast };
+        return new VoxelShape[]{shapeSouth, shapeWest, shapeNorth, shapeEast};
     }
 
-    public static VoxelShape rotate(VoxelShape source, Direction direction)
-    {
+    public static VoxelShape rotate(VoxelShape source, Direction direction) {
         double[] adjustedValues = adjustValues(direction, source.getStart(Direction.Axis.X), source.getStart(Direction.Axis.Z), source.getEnd(Direction.Axis.X), source.getEnd(Direction.Axis.Z));
         return VoxelShapes.create(adjustedValues[0], source.getStart(Direction.Axis.Y), adjustedValues[1], adjustedValues[2], source.getEnd(Direction.Axis.Y), adjustedValues[3]);
     }
 
-    private static double[] adjustValues(Direction direction, double var1, double var2, double var3, double var4)
-    {
-        switch(direction)
-        {
+    private static double[] adjustValues(Direction direction, double var1, double var2, double var3, double var4) {
+        switch (direction) {
             case WEST:
                 double var_temp_1 = var1;
                 var1 = 1.0F - var3;
@@ -90,8 +82,7 @@ public class VoxelHelper {
         return new double[]{var1, var2, var3, var4};
     }
 
-    private static double limit(double value)
-    {
+    private static double limit(double value) {
         return Math.max(0.0, Math.min(1.0, value));
     }
 }
