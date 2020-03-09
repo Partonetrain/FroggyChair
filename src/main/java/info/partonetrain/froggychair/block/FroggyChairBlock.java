@@ -131,9 +131,4 @@ public class FroggyChairBlock extends Block {
         return SeatEntity.create(world, pos, 0.4, playerEntity);
     }
 
-    /*
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-      return ActionResultType.PASS;
-   }
-     */
 }
