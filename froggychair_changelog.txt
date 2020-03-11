@@ -1,0 +1,4 @@
+0.2
+-Added Poggy Chair. Shift-right-click a placed Froggy Chair to turn it into a Poggy Chair
+0.1
+-Firt Release

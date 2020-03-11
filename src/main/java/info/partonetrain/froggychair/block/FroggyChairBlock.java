@@ -12,13 +12,11 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -31,6 +29,9 @@ import java.util.List;
 
 
 public class FroggyChairBlock extends Block {
+
+    public static final int MAX_CHAIR_TYPES = 1;
+    public static final IntegerProperty CHAIR_TYPE = IntegerProperty.create("type", 0, MAX_CHAIR_TYPES);
 
     //FurnitureBlock
     @Override
@@ -80,6 +81,7 @@ public class FroggyChairBlock extends Block {
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         super.fillStateContainer(builder);
         builder.add(DIRECTION);
+        builder.add(CHAIR_TYPE);
     }
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
@@ -111,7 +113,7 @@ public class FroggyChairBlock extends Block {
 
     public FroggyChairBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(CHAIR_TYPE, 0));
         SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
     }
 
@@ -128,7 +130,28 @@ public class FroggyChairBlock extends Block {
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result) {
-        return SeatEntity.create(world, pos, 0.4, playerEntity);
+        if (playerEntity.isShiftKeyDown()) {
+            //
+            this.changeState(world, pos);
+            return ActionResultType.SUCCESS;
+        }else {
+            return SeatEntity.create(world, pos, 0.4, playerEntity);
+        }
+    }
+
+    public void changeState(World world, BlockPos pos){
+        BlockState state = world.getBlockState(pos);
+        //0:froggychair 1:poggychair 2:todo:mokou chair
+        if(state.getBlock() == this){
+            int thisChairType = state.get(CHAIR_TYPE);
+            if(thisChairType == MAX_CHAIR_TYPES){
+                //reset to froggy chair
+                world.setBlockState(pos, state.with(CHAIR_TYPE, 0), 2);
+            }else{
+                world.setBlockState(pos, state.with(CHAIR_TYPE, (thisChairType + 1)), 2);
+            }
+        }
+
     }
 
 }

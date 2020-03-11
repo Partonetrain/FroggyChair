@@ -1,19 +1,35 @@
 {
   "variants": {
-    "facing=north": {
+    "facing=north,type=0": {
       "model": "froggychair:block/froggychair",
       "y": 0
     },
-    "facing=east": {
+    "facing=east,type=0": {
       "model": "froggychair:block/froggychair",
       "y": 90
     },
-    "facing=south": {
+    "facing=south,type=0": {
       "model": "froggychair:block/froggychair",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,type=0": {
       "model": "froggychair:block/froggychair",
+      "y": 270
+    },
+    "facing=north,type=1": {
+      "model": "froggychair:block/poggychair",
+      "y": 0
+    },
+    "facing=east,type=1": {
+      "model": "froggychair:block/poggychair",
+      "y": 90
+    },
+    "facing=south,type=1": {
+      "model": "froggychair:block/poggychair",
+      "y": 180
+    },
+    "facing=west,type=1": {
+      "model": "froggychair:block/poggychair",
       "y": 270
     }
   }
