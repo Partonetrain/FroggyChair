@@ -30,7 +30,7 @@ import java.util.List;
 
 public class FroggyChairBlock extends Block {
 
-    public static final int MAX_CHAIR_TYPES = 1;
+    public static final int MAX_CHAIR_TYPES = 2;
     public static final IntegerProperty CHAIR_TYPE = IntegerProperty.create("type", 0, MAX_CHAIR_TYPES);
 
     //FurnitureBlock
