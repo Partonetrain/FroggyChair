@@ -14,8 +14,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, FroggyChair.MODID);
-
-
     public static final RegistryObject<Block> FROGGYCHAIR_BLOCK = BLOCKS.register("froggychair", () -> new FroggyChairBlock(Block.Properties.create(Material.WOOD).hardnessAndResistance(1.5F, 6.0F).lightValue(0).sound(SoundType.WOOD)));
 
 }

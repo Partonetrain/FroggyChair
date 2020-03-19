@@ -3,6 +3,8 @@ package info.partonetrain.froggychair;
 import info.partonetrain.froggychair.core.ModBlocks;
 import info.partonetrain.froggychair.proxy.ClientProxy;
 import info.partonetrain.froggychair.proxy.CommonProxy;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -36,7 +38,7 @@ public class FroggyChair {
 
     private void onClientSetup(FMLClientSetupEvent event) {
         PROXY.onSetupClient();
+        RenderTypeLookup.setRenderLayer(ModBlocks.FROGGYCHAIR_BLOCK.get(), RenderType.getCutoutMipped());
     }
-
 
 }

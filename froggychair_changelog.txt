@@ -1,4 +1,8 @@
+0.4
+Added Froppy Chair. Shift-click a Mokou chair. There will be a better system for switching between them in the future. Probably.
+0.3
+Added Mokou Chair. Shift-click a Poggy Chair.
 0.2
 -Added Poggy Chair. Shift-right-click a placed Froggy Chair to turn it into a Poggy Chair
 0.1
--Firt Release
+-First Release

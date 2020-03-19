@@ -46,6 +46,22 @@
     "facing=west,type=2": {
       "model": "froggychair:block/mokouchair",
       "y": 270
+    },
+    "facing=north,type=3": {
+      "model": "froggychair:block/mokouchair",
+      "y": 0
+    },
+    "facing=east,type=3": {
+      "model": "froggychair:block/froppychair",
+      "y": 90
+    },
+    "facing=south,type=3": {
+      "model": "froggychair:block/froppychair",
+      "y": 180
+    },
+    "facing=west,type=3": {
+      "model": "froggychair:block/froppychair",
+      "y": 270
     }
   }
 }

@@ -30,7 +30,7 @@ import java.util.List;
 
 public class FroggyChairBlock extends Block {
 
-    public static final int MAX_CHAIR_TYPES = 2;
+    public static final int MAX_CHAIR_TYPES = 3;
     public static final IntegerProperty CHAIR_TYPE = IntegerProperty.create("type", 0, MAX_CHAIR_TYPES);
 
     //FurnitureBlock
@@ -131,7 +131,6 @@ public class FroggyChairBlock extends Block {
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result) {
         if (playerEntity.isShiftKeyDown()) {
-            //
             this.changeState(world, pos);
             return ActionResultType.SUCCESS;
         }else {
@@ -141,7 +140,7 @@ public class FroggyChairBlock extends Block {
 
     public void changeState(World world, BlockPos pos){
         BlockState state = world.getBlockState(pos);
-        //0:froggychair 1:poggychair 2:todo:mokou chair
+        //0:froggychair 1:poggychair 2:mokouchair 3:froppychair
         if(state.getBlock() == this){
             int thisChairType = state.get(CHAIR_TYPE);
             if(thisChairType == MAX_CHAIR_TYPES){
